@@ -1,0 +1,27 @@
+"CI4 Controllers": {
+    "scope": "",
+    "prefix": "controller",
+    "body": [
+        "<?php namespace App\\Controllers\\Backend\\\\${TM_DIRECTORY/.*\\\\([^\\\\]*)$/$1/};",
+        "use App\\Controllers\\BackendController;",
+        "",
+        "class ${TM_FILENAME_BASE/.*\\\\([^\\\\]*)$/$1/} extends BackendController",
+        "{",
+        "\tpublic \\$path_view = 'backend/${TM_DIRECTORY/.*\\\\([^\\\\]*)/${1:/downcase}/}/${1:${TM_FILENAME_BASE/(.*)/${1:/downcase}/}}';",
+        "\tpublic \\$theme     = 'pages/theme-backend/render';",
+        "",
+        "\tpublic function index()",
+        "\t{",
+        "\t\t\\$param['menu']       = \\$this->menu;",
+        "\t\t\\$param['activeMenu'] = \\$this->activeMenu;",
+        "\t\tif (\\$param['activeMenu']['akses_lihat'] == '0')",
+        "\t\t{",
+        "\t\t\treturn redirect()->to('denied');",
+        "\t\t}",
+        "\t\t\\$param['page']  = view(\\$this->path_view . 'page-index');",
+        "\t\treturn view(\\$this->theme, \\$param);",
+        "\t}",
+        "}",
+    ],
+    "description": "Controller Codeigniter 4"
+}

@@ -1,0 +1,15 @@
+"Card BG Transparent": {
+    "scope": "html",
+    "prefix": "cardtransparent",
+    "body": [
+          "<div class='card'>",
+          "\t<div class='card-header bg-transparent'>",
+        "\t\t$1",
+          "\t</div>",
+          "\t<div class='card-body'>",
+        "\t\t$2",
+        "\t</div>",
+        "</div>",
+    ],
+    "description": "Card BG Transparent"
+},s

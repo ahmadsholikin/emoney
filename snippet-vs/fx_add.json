@@ -1,0 +1,19 @@
+"Function Add": {
+    "scope": "php",
+    "prefix": "function_add",
+    "body": [
+        "public function add()",
+        "{",
+        "\t\\$param['menu']       = \\$this->menu;",
+        "\t\\$param['activeMenu'] = \\$this->activeMenu;",
+        "\tif (\\$param['activeMenu']['akses_lihat'] == '0')",
+        "\t{",
+        "\t\treturn redirect()->to('denied');",
+        "\t}",
+        "\t\\$data = array();",
+        "\t\\$param['page']  = view(\\$this->path_view . 'page-add',\\$data);",
+        "\treturn view(\\$this->theme, \\$param);",
+        "}",
+    ],
+    "description": "Controller Function Add Codeigniter 4"
+},

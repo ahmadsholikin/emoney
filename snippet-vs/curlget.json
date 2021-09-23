@@ -1,0 +1,13 @@
+"Curl API Get": {
+    "scope": "php",
+    "prefix": "curlget",
+    "body": [
+        "\\$url            = '$1';",
+        "\\$client         = \\Config\\Services::curlrequest();",
+        "\\$response       = \\$client->get(\\$url);",
+        "\\$api['kode']    = \\$response->getStatusCode();",
+        "\\$api['reason']  = \\$response->getReason();",
+        "\\$api['body']    = json_decode(\\$response->getBody());",
+    ],
+    "description": "Curl API Get"
+},

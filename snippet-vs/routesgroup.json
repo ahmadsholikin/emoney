@@ -1,0 +1,18 @@
+"Routes Group Backend": {
+    "scope": "php",
+    "prefix": "routesbackend",
+    "body": [
+        "\\$routes->group('$1', function (\\$routes) {",
+        "\t\\$root_groups = 'Backend\\\\$2\\\\$3';",
+        "\t//pages",
+        "\t\\$routes->add('/', \\$root_groups . '::index', ['filter' => 'auth']);",
+        "\t\\$routes->add('add', \\$root_groups . '::add', ['filter' => 'auth']);",
+        "\t\\$routes->get('edit', \\$root_groups . '::edit', ['filter' => 'auth']);",
+        "\t//process",
+        "\t\\$routes->post('insert', \\$root_groups . '::insert', ['filter' => 'auth']);",
+        "\t\\$routes->post('update', \\$root_groups . '::update', ['filter' => 'auth']);",
+        "\t\\$routes->get('delete', \\$root_groups . '::delete', ['filter' => 'auth']);",
+        "});",
+    ],
+    "description": "Routes Group Backend"
+},

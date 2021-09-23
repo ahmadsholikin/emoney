@@ -1,0 +1,12 @@
+"Incoming Ajax": {
+    "scope": "php",
+    "prefix": "isajax",
+    "body": [
+        "if (\\$this->request->isAJAX()) {",
+        "\t$1",
+        "} else { ",
+        "\techo 'Akses Ditolak';",
+        "}",
+    ],
+    "description": "Incoming Ajax Only"
+},
