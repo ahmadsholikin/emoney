@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table table-bordered tbale-striped table-hover" id="datatb">
+    <table class="table table-bordered table-striped table-hover" id="datatb">
         <thead>
             <tr>
                 <th rowspan="2">No.</th>
@@ -27,11 +27,11 @@
                 <td><?=$row->nama;?></td>
                 <td><?=$row->jabatan;?></td>
                 <td><?=$row->unitkerja;?></td>
-                <td><?=$row->lm_gaji;?></td>
-                <td><?=$row->lm_mk;?></td>
+                <td  class="text-right"><?=$row->lm_gaji;?></td>
+                <td><?=$row->lm_mk;?> th</td>
                 <td><?=$row->lm_tmt;?></td>
-                <td><?=$row->br_gaji_nominal;?></td>
-                <td><?=$row->br_mk_bl;?> th</td>
+                <td class="text-right"><?=$row->br_gaji_nominal;?></td>
+                <td><?=$row->br_mk;?> th</td>
                 <td><?=$row->br_tmt_format;?></td>
             </tr>
             <?php endforeach; ?>

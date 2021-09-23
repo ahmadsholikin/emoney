@@ -7,7 +7,7 @@
             <div class="input-group">
                 <input type="text" name="periode" id="periode" class="form-control form-control-sm bulan" value="<?=date('M Y');?>" placeholder="Pilih Periode Data Kenaikan Gaji Berkala" aria-label="Pilih Periode Data Kenaikan Gaji Berkala" aria-describedby="button-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-light btn-sm" onclick="get_list()" type="button" id="button-addon2">Tampilkan</button>
+                    <button class="btn btn-outline-primary btn-sm" onclick="get_list()" type="button" id="button-addon2">Tampilkan</button>
                 </div>
             </div>
         </form>

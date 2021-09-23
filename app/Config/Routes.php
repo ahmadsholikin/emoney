@@ -18,7 +18,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Frontend\Home\Main');
+$routes->setDefaultController('Pages\Auth\Auth');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -61,7 +61,7 @@ $routes->add('/403', 'Pages\Response::denied');
 $routes->add('/101', 'Pages\Response::unavailable');
 $routes->add('/comingsoon', 'Pages\Response::comingsoon');
 
-$routes->get('/', 'Frontend\Home\Main::index');
+$routes->get('/', 'Pages\Auth\Auth::index');
 
 
 //frontend
