@@ -92,7 +92,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="logo">Logo</label>
-                                <input type="file" class="form-control form-control-sm dropify" id="logo" name="logo" data-default-file="<?=base_url();?>/public/assets/image/<?=$site['logo'];?>" data-max-file-size="1M" data-allowed-file-extensions="png jpg jpeg">
+                                <input type="file" class="form-control form-control-sm dropify" id="logo" name="logo" data-default-file="<?=base_url();?>/writable/uploads/<?=$site['logo'];?>" data-max-file-size="1M" data-allowed-file-extensions="png jpg jpeg">
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>

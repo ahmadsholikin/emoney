@@ -40,7 +40,7 @@
         <div class="sidebar">
             <div class="sidebar-header">
                 <div>
-                    <a class="navbar-brand brand-logo" href="<?= base_url(); ?>/beranda"><img  style="padding-top:5px;height:auto;width: 150px;" src="<?= base_url('public/assets/image/logo.png'); ?>" alt="logo" /></a>
+                    <a class="navbar-brand brand-logo" href="<?= base_url(); ?>/beranda"><img  style="padding:25px 0;height:auto;width: 100px;" src="<?=base_url();?>/writable/uploads/<?=$_SESSION['logo'];?>" alt="logo" /></a>
                     <!-- <a href="<?=base_url('public/backend');?>/index.html" class="sidebar-logo">
                     <span><?=session('nama');?></span>
                     </a>

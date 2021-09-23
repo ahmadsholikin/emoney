@@ -8,7 +8,7 @@
         <link rel="icon" type="image/png" sizes="32x32" href="<?=base_url('favicon');?>/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="<?=base_url('favicon');?>/favicon-16x16.png">
         <!-- Meta -->
-        <title>eXcode</title>
+        <title>e-Billing</title>
         <link rel="stylesheet" href="<?=base_url();?>/public/backend/assets/css/cassie.css">
         <script src="<?=base_url('public/backend');?>/lib/jquery/jquery.min.js"></script>
         <script src="<?= base_url(); ?>/public/plugins/sweetalert/sweetalert.min.js"></script>
