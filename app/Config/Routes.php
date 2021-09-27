@@ -150,41 +150,9 @@ $routes->group('backend', function ($routes) {
         $routes->post('update', $root_user.'::update', ['filter' => 'auth']);
         $routes->get('delete', $root_user.'::delete', ['filter' => 'auth']);
         $routes->get('is_active', $root_user.'::is_active', ['filter' => 'auth']);
-
-        //link atasan
-        $routes->post('simpan-link', $root_user.'::simpanLink', ['filter' => 'auth']);
-        $routes->post('memuat-link', $root_user.'::memuatLink', ['filter' => 'auth']);
-        $routes->post('hapus-link', $root_user.'::hapusLink', ['filter' => 'auth']);
-        $routes->post('aktif-link', $root_user.'::aktifLink', ['filter' => 'auth']);
     });
 
     
-
-    //
-    $routes->group('konten-faq', function ($routes) {
-        $root_groups = "Backend\Konten\Faq";
-        //pages
-        $routes->add('/', $root_groups . '::index', ['filter' => 'auth']);
-        $routes->add('add', $root_groups . '::add', ['filter' => 'auth']);
-        $routes->get('edit', $root_groups . '::edit', ['filter' => 'auth']);
-        //process
-        $routes->post('insert', $root_groups . '::insert', ['filter' => 'auth']);
-        $routes->post('update', $root_groups . '::update', ['filter' => 'auth']);
-        $routes->get('delete', $root_groups . '::delete', ['filter' => 'auth']);
-    });
-
-    $routes->group('konten-berita', function ($routes) {
-        $root_groups = "Backend\Konten\Berita";
-        //pages
-        $routes->add('/', $root_groups . '::index', ['filter' => 'auth']);
-        $routes->add('add', $root_groups . '::add', ['filter' => 'auth']);
-        $routes->get('edit', $root_groups . '::edit', ['filter' => 'auth']);
-        //process
-        $routes->post('insert', $root_groups . '::insert', ['filter' => 'auth']);
-        $routes->post('update', $root_groups . '::update', ['filter' => 'auth']);
-        $routes->get('delete', $root_groups . '::delete', ['filter' => 'auth']);
-    });
-
     //creator
     $routes->group('table-model', function ($routes) {
         $root_groups = "Backend\Creator\TableModel";
@@ -227,6 +195,7 @@ $routes->group('backend', function ($routes) {
         $routes->get('delete', $root_groups . '::delete', ['filter' => 'auth']);
         //getList
         $routes->post('get-list', $root_groups . '::getList', ['filter' => 'auth']);
+        $routes->post('get-sinkron', $root_groups . '::getSinkron', ['filter' => 'auth']);
     });
 
 });

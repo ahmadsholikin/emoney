@@ -1,28 +1,12 @@
-<?php  namespace App\Models\Konten;
+<?php namespace App\Models\Sinkron;
 use CodeIgniter\Model;
 
-class FaqModel extends Model
+class HistKGBModel extends Model
 {
-    protected $table              = 'faq';
+    protected $table              = 'hist_kgb';
     protected $primaryKey         = 'id';
-    protected $returnType         = 'array';
     protected $useSoftDeletes     = true;
-
-    protected $allowedFields      = [
-        'id',
-        'pertanyaan',
-        'jawaban',
-        'created_at',
-        'updated_at',
-        'deleted_at',
-        'id',
-        'pertanyaan',
-        'jawaban',
-        'created_at',
-        'updated_at',
-        'deleted_at',
-    ];
-
+    protected $returnType         = 'array';
     protected $useTimestamps      = true;
     protected $createdField       = 'created_at';
     protected $updatedField       = 'updated_at';
@@ -32,7 +16,27 @@ class FaqModel extends Model
     protected $validationMessages = [];
     protected $skipValidation     = true;
 
-    public function get($id = false)
+    //SHOW COLUMNS FROM hist_kgb;
+    protected $allowedFields = [
+        'periode',
+        'nip',
+        'nama',
+        'jabatan',
+        'unit_kerja',
+        'pangkat',
+        'gaji',
+        'masker',
+        'tmt',
+        'pejabat',
+        'no_sk',
+        'tgl_sk',
+        'flag_update',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+    public function get($id=false)
     {
         if($id === false)
         {
@@ -41,6 +45,6 @@ class FaqModel extends Model
         else
         {
             return $this->where($id)->find();
-        } 
+        }
     }
 }

@@ -23,16 +23,16 @@
             <?php $no=1;foreach ($data as $row) : ?>
             <tr>
                 <td><?=$no++;?></td>
-                <td><?=$row->nip;?></td>
-                <td><?=$row->nama;?></td>
-                <td><?=$row->jabatan;?></td>
-                <td><?=$row->unitkerja;?></td>
-                <td  class="text-right"><?=$row->lm_gaji;?></td>
-                <td><?=$row->lm_mk;?> th</td>
-                <td><?=$row->lm_tmt;?></td>
-                <td class="text-right"><?=$row->br_gaji_nominal;?></td>
-                <td><?=$row->br_mk;?> th</td>
-                <td><?=$row->br_tmt_format;?></td>
+                <td><?=$row['nip'];?></td>
+                <td><?=$row['sinkron'];?>&nbsp;<?=$row['nama'];?></td>
+                <td><?=$row['jabatan'];?></td>
+                <td><?=$row['unitkerja'];?></td>
+                <td  class="text-right"><?=$row['lm_gaji'];?></td>
+                <td><?=$row['lm_mk'];?> th</td>
+                <td><?=$row['lm_tmt'];?></td>
+                <td class="text-right"><?=$row['br_gaji_nominal'];?></td>
+                <td><?=$row['br_mk'];?> th</td>
+                <td><?=$row['br_tmt_format'];?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>

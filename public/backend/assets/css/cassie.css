@@ -14369,7 +14369,7 @@ body {
 @media (min-width: 992px) {
     .signin-sidebar-body, .signup-sidebar-body {
         padding: 40px;
-        margin-top:100px;
+        margin-top:40%;
    }
 }
 .signin-title, .signup-title {
