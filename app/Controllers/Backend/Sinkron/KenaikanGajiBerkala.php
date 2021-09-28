@@ -127,28 +127,37 @@ class KenaikanGajiBerkala extends BackendController
             //proses sinkron ke taspen
             foreach ($data as $row)
             {
+                //cek historis
+                $exist_insert = "SELECT * FROM historis_gapok WHERE TMTGAJI='".$row['periode']."' AND NIP='".$row['nip']."'";
+                $exist_insert = $this->taspen->query($exist_insert);
+                if($exist_insert->getNumRows()>=1)
+                {
+                    $update_exist = "UPDATE historis_gapok SET TMTGAJI=tmt WHERE TMTGAJI='".$row['periode']."' AND NIP='".$row['nip']."'";
+                    $this->taspen->query($update_exist);
+                }
+
                 //proses insert data di tabel historis gapok
                 $kueri_insert = "INSERT INTO historis_gapok 
-                                    (`TMTGAJI`, `NIP`, `kdstapeg`, `KDPANGKAT`, `GAPOK`, `MASKER`, `PRSNGAPOK`, `TMTTABEL`, `TGLSKEP`, `NOMORSKEP`, 
+                                     (`TMTGAJI`, `NIP`, `kdstapeg`, `KDPANGKAT`, `GAPOK`, `MASKER`, `PRSNGAPOK`, `TMTTABEL`, `TGLSKEP`, `NOMORSKEP`, 
                                     `PENERBITSKEP`, `tmt`, `JENIS_SK`, `KETERANGAN`, `TGLUPDATE`, `KDDATI1`, `KDDATI2`, `TMTKGB`) 
                                 VALUES 
                                     ('".$row['periode']."', '".$row['nip']."', 4, '".$row['pangkat']."', ".$row['gaji'].", ".$row['masker'].", 100, '".$row['tmt']."', '".$row['tgl_sk']."', '".$row['no_sk']."',
-                                     '".$row['pejabat']."', '". $row['tmt']."', 1, 'KENAIKAN GAJI BERKALA BY E-BILLING', '". date('Y-m-d H:i:s')."', '11', '16', '0000-00-00');";
+                                    '".$row['pejabat']."', '". $row['tmt']."', 1, 'KENAIKAN GAJI BERKALA BY E-BILLING', '". date('Y-m-d H:i:s')."', '11', '16', '0000-00-00');";
 
                 $this->taspen->query($kueri_insert);
 
                 //proses update data di tabel mstpegawai
                 $kueri_update = "UPDATE 
-                                    mstpegawai peg
-                                INNER JOIN
-                                    historis_gapok hg
-                                    ON peg.NIP = hg.NIP
-                                SET
-                                    peg.KDPANGKAT = hg.KDPANGKAT,
-                                    peg.MKGOLT = hg.MASKER,
-                                    peg.GAPOK = hg.GAPOK
-                                WHERE 
-                                    hg.NIP='".$row['nip']."' AND hg.TMTGAJI='".$row['periode']."'";
+                        mstpegawai peg
+                    INNER JOIN
+                        historis_gapok hg
+                        ON peg.NIP = hg.NIP
+                    SET
+                        peg.KDPANGKAT = hg.KDPANGKAT,
+                        peg.MKGOLT = hg.MASKER,
+                        peg.GAPOK = hg.GAPOK
+                    WHERE 
+                        hg.NIP='".$row['nip']."' AND hg.TMTGAJI='".$row['periode']."'";
 
                 $this->taspen->query($kueri_update);
 
