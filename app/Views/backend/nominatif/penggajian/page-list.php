@@ -10,7 +10,7 @@
                 <th>TJ. ANAK</th>
                 <th>TJ. Fung</th>
                 <th>TJ. Esl</th>
-                <th>Checklist</th>
+                <th style="width:6%">Checklist</th>
             </tr>
         </thead>
         <tbody>
@@ -58,6 +58,12 @@
                         $JANAK = round($row['GAPOK']*0.02*$row['JANAK']);
                     }
 
+                    $bg_gapok = "#FFF";
+                    if($row['GAPOK']<>$row['GAJI']['GAPOK'])
+                    {
+                        $bg_psgn = "#fdb7d1";
+                    }
+
                     $bg_psgn = "#FFF";
                     if($JPSG<>$row['GAJI']['TJISTRI'])
                     {
@@ -86,22 +92,22 @@
                 <td><?=$no;?></td>
                 <td><?=$row['NIP'];?></td>
                 <td><?=$row['NAMA'];?></td>
-                <td class="text-right" title="Gaji pokok nominatif saat ini"><?=rp($row['GAPOK']);?></td>
+                <td style="background-color: <?=$bg_gapok;?>;" class="text-right" title="Gaji pokok nominatif saat ini"><?=rp($row['GAPOK']);?></td>
                 <td class="text-right" title="Tunjangan suami/istri nominatif saat ini" style="background-color: <?=$bg_psgn;?>;"><?=rp($JPSG);?></td>
                 <td class="text-right" title="Tunjangan anak nominatif saat ini" style="background-color: <?=$bg_anak;?>;"><span class="text-left">(<?=$row['JANAK'];?>)</span>&nbsp;&nbsp;&nbsp;&nbsp; <?=rp($JANAK);?></td>
                 <td class="text-right" title="Tunjangan fungsional nominatif saat ini" style="background-color: <?=$bg_fungsional;?>;"><?=rp($JF);?></td>
                 <td class="text-right" title="Tunjangan eselon/struktural nominatif saat ini" style="background-color: <?=$bg_eselon;?>;"><?=rp($JE);?></td>
                 <td rowspan="2">
                     <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="valid<?=$no;?>" style="margin-top:0.1rem">
-                        <label class="form-check-label" for="valid<?=$no;?>">Valid</label>
+                        <input type="checkbox" class="form-check-input" id="valid<?=$no;?>" style="margin-top:0.1rem" value="1" onclick="checkitout(this,'<?=$row['NIP'];?>','<?=$pengajuan;?>','<?=$no;?>')">
+                        <label class="form-check-label" for="valid<?=$no;?>">Valid &nbsp;<span class="spinner-border spinner-border-sm d-none" id="spin<?=$no;?>" role="status"></span></label>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td colspan="2" class="text-right">Penerimaan Periode Gaji : <?=$row['PERIODE'];?></td>
-                <td class="text-right" title="Gaji pokok nominatif periode <?=$row['PERIODE'];?>" ><?=rp($row['GAJI']['GAPOK']);?></td>
+                <td style="background-color: <?=$bg_gapok;?>;"  class="text-right" title="Gaji pokok nominatif periode <?=$row['PERIODE'];?>" ><?=rp($row['GAJI']['GAPOK']);?></td>
                 <td class="text-right" title="Tunjangan suami/istri nominatif periode <?=$row['PERIODE'];?>" style="background-color: <?=$bg_psgn;?>;"><?=rp($row['GAJI']['TJISTRI']);?></td>
                 <td class="text-right" title="Tunjangan anak nominatif periode <?=$row['PERIODE'];?>" style="background-color: <?=$bg_anak;?>;"><span class="text-left">(<?=$row['GAJI']['JANAK'];?>)</span>&nbsp;&nbsp;&nbsp;&nbsp;<?=rp($row['GAJI']['TJANAK']);?></td>
                 <td class="text-right" title="Tunjangan fungsional nominatif periode <?=$row['PERIODE'];?>" style="background-color: <?=$bg_fungsional;?>;"><?=rp($row['GAJI']['TJUMUM']+$row['GAJI']['TJFUNGSI']);?></td>
@@ -114,3 +120,38 @@
         </tbody>
     </table>
 </div>
+<script>
+    function checkitout(obj,id,periode,spin)
+    {
+        $("#spin"+spin).removeClass("d-none");
+        $("#spin"+spin).addClass("d-print-inline");
+        $.ajax(
+        {
+            "url" : "<?=backend_url();?>/penggajian/set-check-list",
+            "type" : "POST",
+            "data" : { 
+                "csrf_app"  : $("input[name='csrf_app']").val(),
+                "status"    : obj.value,
+                "id"        : id,
+                "periode"   : periode,
+            },
+            success: function(data, textStatus, xhr)
+            {
+                if(obj.value==1)
+                {
+                    $("#"+obj.id).val(0);
+                }
+                else
+                {
+                    $("#"+obj.id).val(1);
+                }
+                $("#spin"+spin).addClass("d-none");
+                $("#spin"+spin).removeClass("d-print-inline");
+            },
+            error: function(textStatus,xhr)
+            {
+                
+            }
+        });
+    }
+</script>

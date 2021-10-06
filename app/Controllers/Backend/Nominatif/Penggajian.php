@@ -67,8 +67,8 @@ class Penggajian extends BackendController
             $blank['GAPOK']     = "";
             $blank['JISTRI']    = "";
             $blank['JANAK']     = "";
-            $blank['TJISTRI']    = "";
-            $blank['TJANAK']     = "";
+            $blank['TJISTRI']   = "";
+            $blank['TJANAK']    = "";
            
             foreach($gaji as $item):
                 $dummy[$item['NIP']] = $item;
@@ -92,7 +92,8 @@ class Penggajian extends BackendController
                 array_push($data,$dump);
             endforeach;
 
-            $data['data']   = $data;
+            $data['data']       = $data;
+            $data['pengajuan']  = entitiestag($this->request->getPost('periode_pengajuan'));
             echo view($this->path_view . 'page-list', $data);
         } 
         else
