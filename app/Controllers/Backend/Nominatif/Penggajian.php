@@ -1,5 +1,6 @@
 <?php namespace App\Controllers\Backend\Nominatif;
 use App\Controllers\BackendController;
+use App\Models\Nominatif\PengajuanGajiModel;
 
 class Penggajian extends BackendController
 {
@@ -9,6 +10,7 @@ class Penggajian extends BackendController
     public function __construct()
     {
         $this->taspen = db_connect("taspen");
+        $this->PengajuanGajiModel =  new PengajuanGajiModel();
     }
 
     public function index()
@@ -89,6 +91,18 @@ class Penggajian extends BackendController
                 //periode pilihan
                 $dump['PERIODE']        = '01 '.entitiestag($this->request->getPost('periode_gajian'));
                 $dump['GAJI']           = isset($dummy[$row['NIP']])?$dummy[$row['NIP']]:$blank;
+                $dump['VALID']          = 0;
+
+                $pg = $this->PengajuanGajiModel->get([
+                    'periode'   => $periode_pengajuan,
+                    'nip'       => $row['NIP'],
+                ]);
+
+                if(!empty($pg))
+                {
+                    $dump['VALID']          = 1;
+                }
+
                 array_push($data,$dump);
             endforeach;
 
@@ -101,4 +115,41 @@ class Penggajian extends BackendController
             echo 'Akses Ditolak';
         }
     }
+
+    public function setCheckList()
+    {
+        if ($this->request->isAJAX())
+        {
+            $periode    = tanggal_Ymd(entitiestag($this->request->getPost('periode')));
+            $nip        = entitiestag($this->request->getPost('id'));
+            $skpd       = entitiestag($this->request->getPost('skpd'));
+            $status     = entitiestag($this->request->getPost('status'));
+
+            $data['periode'] = $periode;
+            $data['nip']     = $nip;
+            $data['skpd']    = $skpd;
+            $data['valid']   = $status;
+
+            $pg = $this->PengajuanGajiModel->get([
+                                                    'periode'   => $periode,
+                                                    'nip'       => $nip,
+                                                    'skpd'      => $skpd,
+                                                ]);
+            if(empty($pg))
+            {
+                $this->PengajuanGajiModel->insert($data);
+            }
+            else
+            {
+                $id = $pg[0]['id'];
+                $this->PengajuanGajiModel->update($id,$data);
+            }
+            echo "done";
+        } 
+        else
+        { 
+            echo 'Akses Ditolak';
+        }
+    }
+
 }

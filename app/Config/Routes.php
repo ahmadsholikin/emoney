@@ -210,6 +210,8 @@ $routes->group('backend', function ($routes) {
         $routes->post('get-list', $root_groups . '::getList', ['filter' => 'auth']);
         $routes->post('update', $root_groups . '::update', ['filter' => 'auth']);
         $routes->get('delete', $root_groups . '::delete', ['filter' => 'auth']);
+        //setCheckList
+        $routes->post('set-check-list', $root_groups . '::setCheckList', ['filter' => 'auth']);
     });
 
 });

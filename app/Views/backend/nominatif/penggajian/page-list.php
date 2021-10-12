@@ -98,10 +98,17 @@
                 <td class="text-right" title="Tunjangan fungsional nominatif saat ini" style="background-color: <?=$bg_fungsional;?>;"><?=rp($JF);?></td>
                 <td class="text-right" title="Tunjangan eselon/struktural nominatif saat ini" style="background-color: <?=$bg_eselon;?>;"><?=rp($JE);?></td>
                 <td rowspan="2">
+                    <?php if($row['VALID']=='0'):?>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="valid<?=$no;?>" style="margin-top:0.1rem" value="1" onclick="checkitout(this,'<?=$row['NIP'];?>','<?=$pengajuan;?>','<?=$no;?>')">
                         <label class="form-check-label" for="valid<?=$no;?>">Valid &nbsp;<span class="spinner-border spinner-border-sm d-none" id="spin<?=$no;?>" role="status"></span></label>
                     </div>
+                    <?php else : ?>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" checked id="valid<?=$no;?>" style="margin-top:0.1rem" value="0" onclick="checkitout(this,'<?=$row['NIP'];?>','<?=$pengajuan;?>','<?=$no;?>')">
+                        <label class="form-check-label" for="valid<?=$no;?>">Valid &nbsp;<span class="spinner-border spinner-border-sm d-none" id="spin<?=$no;?>" role="status"></span></label>
+                    </div>
+                    <?php endif;?>
                 </td>
             </tr>
             <tr>
@@ -134,6 +141,7 @@
                 "status"    : obj.value,
                 "id"        : id,
                 "periode"   : periode,
+                "skpd"      : $("#skpd").val(),
             },
             success: function(data, textStatus, xhr)
             {
