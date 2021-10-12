@@ -214,6 +214,19 @@ $routes->group('backend', function ($routes) {
         $routes->post('set-check-list', $root_groups . '::setCheckList', ['filter' => 'auth']);
     });
 
+    //data TPP
+    $routes->group('nominal-kelas-jabatan', function ($routes) {
+        $root_groups = 'Backend\DataTPP\NominalKelasJabatan';
+        //pages
+        $routes->add('/', $root_groups . '::index', ['filter' => 'auth']);
+        $routes->add('add', $root_groups . '::add', ['filter' => 'auth']);
+        $routes->get('edit', $root_groups . '::edit', ['filter' => 'auth']);
+        //process
+        $routes->post('insert', $root_groups . '::insert', ['filter' => 'auth']);
+        $routes->post('update', $root_groups . '::update', ['filter' => 'auth']);
+        $routes->get('delete', $root_groups . '::delete', ['filter' => 'auth']);
+    });
+
 });
 
 
