@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : LOCAL
+ Source Server         : PDM
  Source Server Type    : MySQL
- Source Server Version : 100414
- Source Host           : localhost:3306
+ Source Server Version : 80026
+ Source Host           : 103.115.104.120:3306
  Source Schema         : emoney
 
  Target Server Type    : MySQL
- Target Server Version : 100414
+ Target Server Version : 80026
  File Encoding         : 65001
 
- Date: 26/10/2021 06:25:56
+ Date: 26/10/2021 06:29:32
 */
 
 SET NAMES utf8mb4;
@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `app_group`;
 CREATE TABLE `app_group`  (
-  `group_id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(0) NOT NULL AUTO_INCREMENT,
   `group_nama` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `deskripsi` varchar(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `created_at` datetime(0) NULL DEFAULT NULL,
@@ -71,17 +71,17 @@ INSERT INTO `app_info` VALUES ('1', 'E Billing Dashboard Layanan Sistem', 'helpd
 -- ----------------------------
 DROP TABLE IF EXISTS `app_menu`;
 CREATE TABLE `app_menu`  (
-  `menu_id` int(11) NOT NULL AUTO_INCREMENT,
+  `menu_id` int(0) NOT NULL AUTO_INCREMENT,
   `menu_nama` varchar(40) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `deskripsi` varchar(150) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `link` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '#',
   `prefik` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `ikon` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT 'mdi mdi-home',
-  `induk_id` tinyint(4) NULL DEFAULT NULL,
+  `induk_id` tinyint(0) NULL DEFAULT NULL,
   `root_nama` varchar(40) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `hirarki` tinyint(4) NULL DEFAULT NULL,
+  `hirarki` tinyint(0) NULL DEFAULT NULL,
   `sub` enum('1','0') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '0',
-  `urutan` tinyint(4) NULL DEFAULT 1,
+  `urutan` tinyint(0) NULL DEFAULT 1,
   `aktif` enum('1','0') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '1',
   `nama_tabel` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `primary_key` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
@@ -130,9 +130,9 @@ INSERT INTO `app_menu` VALUES (76, 'Take Home Pay', 'Informasi Take Home Pay Peg
 -- ----------------------------
 DROP TABLE IF EXISTS `app_role`;
 CREATE TABLE `app_role`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_id` int(11) NULL DEFAULT NULL,
-  `menu_id` int(11) NULL DEFAULT NULL,
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `group_id` int(0) NULL DEFAULT NULL,
+  `menu_id` int(0) NULL DEFAULT NULL,
   `akses_lihat` enum('1','0') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0',
   `akses_tambah` enum('1','0') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0',
   `akses_ubah` enum('1','0') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0',
@@ -188,7 +188,7 @@ CREATE TABLE `app_users`  (
   `username` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `kontak` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `group_id` int(11) NOT NULL,
+  `group_id` int(0) NOT NULL,
   `foto` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `is_active` enum('1','0') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1',
   `created_at` datetime(0) NULL DEFAULT NULL,
@@ -201,6 +201,7 @@ CREATE TABLE `app_users`  (
 -- ----------------------------
 -- Records of app_users
 -- ----------------------------
+INSERT INTO `app_users` VALUES ('inka@magelangkab.go.id', '', 'inka', '$2y$10$CCUpyjX1nhHWvm1SRIjn6OA1Is4HDNeISytIXZal2oRPbo8hWmuXG', NULL, 1, NULL, '1', '2021-10-13 19:56:50', '2021-10-13 19:56:50', NULL);
 INSERT INTO `app_users` VALUES ('nci.ahmad@gmail.com', '@hmad', 'Ahmad Sholikin', '$2y$10$qebTpuoimrIWwHtaGLn5oO9H6yq.4hHU5U6rPZmnositYwjRKKBBu', '08985000788', 1, 'foto/1631169674_95d60cd0a7a3887825e2.jpg', '1', '2021-09-09 13:49:58', '2021-09-09 13:49:58', NULL);
 
 -- ----------------------------
@@ -208,7 +209,7 @@ INSERT INTO `app_users` VALUES ('nci.ahmad@gmail.com', '@hmad', 'Ahmad Sholikin'
 -- ----------------------------
 DROP TABLE IF EXISTS `hist_kgb`;
 CREATE TABLE `hist_kgb`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(0) NOT NULL AUTO_INCREMENT,
   `periode` date NULL DEFAULT NULL,
   `nip` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -216,7 +217,7 @@ CREATE TABLE `hist_kgb`  (
   `pangkat` char(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `unit_kerja` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `gaji` double UNSIGNED NULL DEFAULT NULL,
-  `masker` tinyint(4) NULL DEFAULT NULL,
+  `masker` tinyint(0) NULL DEFAULT NULL,
   `tmt` date NULL DEFAULT NULL,
   `pejabat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `no_sk` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -409,8 +410,8 @@ INSERT INTO `hist_kgb` VALUES (177, '2021-11-01', '199003052017062001', 'EMA SEK
 -- ----------------------------
 DROP TABLE IF EXISTS `nominal_kelas_jabatan`;
 CREATE TABLE `nominal_kelas_jabatan`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `induk_kelas` tinyint(4) NOT NULL,
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `induk_kelas` tinyint(0) NOT NULL,
   `kelas` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nominal` double NOT NULL,
   `tahun_berlaku` year NOT NULL,
@@ -419,23 +420,123 @@ CREATE TABLE `nominal_kelas_jabatan`  (
   `updated_at` datetime(0) NULL DEFAULT NULL,
   `deleted_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 108 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of nominal_kelas_jabatan
 -- ----------------------------
-INSERT INTO `nominal_kelas_jabatan` VALUES (1, 15, 'Kelas 15', 14658000, 2021, 'Sekretaris Daerah', '2021-10-12 12:09:15', '2021-10-12 12:19:42', NULL);
 INSERT INTO `nominal_kelas_jabatan` VALUES (2, 14, 'Kelas 14 a', 8523000, 2021, 'Jabatan Pimpinan Tinggi pada Inspektorat', '2021-10-12 12:20:16', '2021-10-12 12:20:16', NULL);
 INSERT INTO `nominal_kelas_jabatan` VALUES (3, 14, 'Kelas 14 b', 8342000, 2021, 'Jabatan Pimpinan Tinggi pada Setda', '2021-10-12 13:53:58', '2021-10-12 13:53:58', NULL);
 INSERT INTO `nominal_kelas_jabatan` VALUES (4, 14, 'Kelas 14 c', 7979000, 2021, 'Jabatan Pimpinan Tinggi pada Dinkes, BPBD, Bappeda Litbangda, BPPKAD, BKPPD, Satpol PP PK, dan Disdukcapil', '2021-10-12 13:55:33', '2021-10-12 13:55:33', NULL);
 INSERT INTO `nominal_kelas_jabatan` VALUES (5, 14, 'Kelas 14 d', 7616000, 2021, 'Jabatan Pimpinan Tinggi pada DPMPTSP', '2021-10-12 13:56:17', '2021-10-12 13:56:17', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (6, 13, 'Kelas 13 a', 6687000, 2021, 'JPT Staf Ahli Bupati', '2021-10-13 20:14:10', '2021-10-13 20:23:48', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (8, 13, 'Kelas 13 b', 5960000, 2021, 'Jabatan Fungsional Ahli Utama Pengelola Pengadaan\r\nBarang dan Jasa', '2021-10-13 20:25:49', '2021-10-13 20:25:49', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (9, 14, 'Kelas 14 e 1', 7761000, 2021, 'Jabatan Pimpinan Tinggi pada Perangkat daerah 4 atau lebih Bidang/Bagian', '2021-10-13 21:18:35', '2021-10-13 21:36:58', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (10, 14, 'Kelas 14 e 2', 7507000, 2021, 'Jabatan Pimpinan Tinggi pada Perangkat daerah 3 Bidang/Bagian', '2021-10-13 21:19:40', '2021-10-13 21:38:00', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (11, 14, 'Kelas 14 e 3', 7254000, 2021, 'Jabatan Pimpinan Tinggi pada Perangkat daerah 2 Bidang/Bagian', '2021-10-13 21:20:30', '2021-10-13 21:37:45', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (12, 13, 'Kelas 13 c', 5815000, 2021, 'Jabatan Fungsional Ahli Utama pada Setda selain\r\nJabatan Fungsional Pengelola Pengadaan Barang dan\r\nJasa', '2021-10-13 21:21:47', '2021-10-13 21:21:47', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (13, 13, 'Kelas 13 d', 5669000, 2021, 'Jabatan Fungsional Ahli Utama pada Inspektorat', '2021-10-13 21:23:09', '2021-10-13 21:23:09', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (14, 13, 'Kelas 13 e', 5524000, 2021, 'Jabatan Fungsional Ahli Utama pada Dinkes, BPBD,\r\nBappeda Litbangda, BPPKAD, BKPPD, Satpol PP PK,\r\ndan Disdukcapil\r\n', '2021-10-13 21:24:07', '2021-10-13 21:24:07', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (15, 13, 'Kelas 13 f', 5233000, 2021, 'Jabatan Fungsional Ahli Utama pada DPMPTSP', '2021-10-13 21:24:41', '2021-10-13 21:24:41', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (16, 13, 'Kelas 13 g', 4942000, 2021, 'Jabatan Fungsional Ahli Utama pada perangkat\r\ndaerah lainnya', '2021-10-13 21:25:29', '2021-10-13 21:25:29', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (17, 12, 'Kelas 12 a', 5462000, 2021, 'Jabatan Administrator pada Bagian Pengadaan\r\nBarang dan Jasa Setda\r\n', '2021-10-13 21:26:17', '2021-10-13 21:26:17', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (18, 12, 'Kelas 12 b', 5346000, 2021, 'Jabatan Administrator pada Setda selain Bagian\r\nPengadaan Barang dan Jasa Setda', '2021-10-13 21:27:26', '2021-10-13 21:27:26', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (19, 12, 'Kelas 12 c', 5230000, 2021, 'Jabatan Administrator pada Inspektorat', '2021-10-13 21:28:03', '2021-10-13 21:28:03', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (20, 12, 'Kelas 12 d', 5113000, 2021, 'Jabatan Administrator pada Dinkes, BPBD, Bappeda\r\nLitbangda, BPPKAD, BKPPD, Satpol PP PK, dan\r\nDisdukcapil, Camat, dan Kepala Perangkat Daerah', '2021-10-13 21:28:57', '2021-10-13 21:28:57', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (21, 12, 'Kelas 12 e', 4881000, 2021, 'Jabatan Administrator pada DPMPTSP', '2021-10-13 21:29:45', '2021-10-13 21:29:45', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (22, 12, 'Kelas 12 f 1', 4974000, 2021, 'Jabatan Administrator Sekretaris pada perangkat\r\ndaerah 4 atau lebih Bidang/Bagian', '2021-10-13 21:33:23', '2021-10-13 21:33:23', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (23, 12, 'Kelas 12 f 2', 4811000, 2021, 'Jabatan Administrator Sekretaris pada perangkat\r\ndaerah 3 Bidang/Bagian', '2021-10-13 21:34:44', '2021-10-13 21:34:44', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (24, 12, 'Kelas 12 f 3', 4649000, 2021, 'Jabatan Administrator Sekretaris pada perangkat\r\ndaerah 2 Bidang/Bagian', '2021-10-13 21:35:39', '2021-10-13 21:35:39', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (25, 11, 'Kelas 11 a', 4044000, 2021, 'Jabatan Administrator pada Inspektorat', '2021-10-13 21:38:59', '2021-10-13 21:38:59', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (26, 11, 'Kelas 11 b', 3954000, 2021, 'Jabatan Administrator pada Dinkes, BPBD, Bappeda\r\nLitbangda, BPPKAD, BKPPD, Satpol PP PK, dan\r\nDisdukcapil\r\n', '2021-10-13 21:39:29', '2021-10-13 21:39:29', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (27, 11, 'Kelas 11 c', 3774000, 2021, 'Jabatan Administrator pada DPMPTSP', '2021-10-13 21:40:09', '2021-10-13 21:40:09', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (28, 11, 'Kelas 11 d', 3595000, 2021, 'Jabatan Administrator pada Perangkat Daerah\r\nlainnya', '2021-10-13 21:40:55', '2021-10-13 21:40:55', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (29, 11, 'Kelas 11 e', 3684000, 2021, 'Jabatan Fungsional Ahli Madya Pengelola Pengadaan\r\nBarang dan Jasa', '2021-10-13 21:41:22', '2021-10-13 21:41:22', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (30, 11, 'Kelas 11 f', 3595000, 2021, 'Jabatan Fungsional Ahli Madya pada Setda selain\r\nJabatan Fungsional Pengelola Pengadaan Barang dan\r\nJasa', '2021-10-13 21:41:57', '2021-10-13 21:41:57', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (31, 11, 'Kelas 11 g', 3505000, 2021, 'Jabatan Fungsional Ahli Madya pada Inspektorat', '2021-10-13 21:42:26', '2021-10-13 21:42:26', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (32, 11, 'Kelas 11 h', 3415000, 2021, 'Jabatan Fungsional Ahli Madya pada Dinkes, BPBD,\r\nBappeda Litbangda, BPPKAD, BKPPD, Satpol PP PK,\r\nDisdukcapil, dan Jabatan Fungsional Operator\r\nTransmisi Sandi\r\n', '2021-10-13 21:43:14', '2021-10-13 21:43:14', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (33, 11, 'Kelas 11 i', 3235000, 2021, 'Jabatan Fungsional Ahli Madya pada DPMPTSP', '2021-10-13 21:43:46', '2021-10-13 21:43:46', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (34, 11, 'Kelas 11 j', 3055000, 2021, 'Jabatan Fungsional Ahli Madya pada perangkat\r\ndaerah lainnya', '2021-10-13 21:44:50', '2021-10-13 21:44:50', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (35, 10, 'Kelas 10', 3127000, 2021, '', '2021-10-13 21:46:05', '2021-10-13 21:46:05', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (36, 9, 'Kelas 9 a', 3196000, 2021, 'Jabatan Pengawas pada Bagian Pengadaan Barang\r\ndan Jasa Setda', '2021-10-13 21:46:49', '2021-10-13 21:46:49', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (37, 9, 'Kelas 9 b', 3128000, 2021, 'Jabatan Pengawas pada Setda selain pada Bagian\r\nPengadaan Barang dan Jasa Setda', '2021-10-13 21:47:20', '2021-10-13 21:47:20', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (38, 9, 'Kelas 9 c', 3060000, 2021, 'Jabatan Pengawas pada Inspektorat', '2021-10-13 21:48:04', '2021-10-13 21:48:04', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (39, 9, 'Kelas 9 d', 2992000, 2021, 'Jabatan Pengawas pada Dinkes, BPBD, Bappeda\r\nLitbangda, BPPKAD, BKPPD, Satpol PP PK,\r\nDisdukcapil, Lurah, Kepala Seksi Layanan Persandian\r\ndan Telekomunikasi pada Diskominfo', '2021-10-13 21:48:39', '2021-10-13 21:48:39', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (40, 9, 'Kelas 9 e', 2856000, 2021, 'Jabatan Pengawas pada DPMPTSP', '2021-10-13 21:49:14', '2021-10-13 21:49:14', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (41, 9, 'Kelas 9 f', 2720000, 2021, 'Jabatan Pengawas pada Perangkat Daerah lainnya', '2021-10-13 21:49:52', '2021-10-13 21:49:52', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (42, 9, 'Kelas 9 g', 2788000, 2021, 'Jabatan Fungsional Pengelola Pengadaan Barang dan\r\nJasa Ahli Muda', '2021-10-13 21:50:44', '2021-10-13 21:50:44', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (43, 9, 'Kelas 9 h', 2720000, 2021, 'Jabatan Fungsional Ahli Muda pada Setda selain\r\nJabatan Fungsional Pengelola Pengadaan Barang dan\r\nJasa', '2021-10-13 21:51:09', '2021-10-13 21:51:09', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (44, 9, 'Kelas 9 i', 2652000, 2021, 'Jabatan Fungsional Ahli Muda pada Inspektorat', '2021-10-13 21:51:49', '2021-10-13 21:51:49', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (45, 9, 'Kelas 9 j', 2584000, 2021, 'Jabatan Fungsional Ahli Muda pada Dinkes, BPBD,\r\nBappeda Litbangda, BPPKAD, BKPPD, Satpol PP PK,\r\nDisdukcapil, dan Jabatan Fungsional Operator\r\nTransmisi Sandi', '2021-10-13 21:52:13', '2021-10-13 21:52:13', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (46, 9, 'Kelas 9 k', 2448000, 2021, 'Jabatan Fungsional Ahli Muda pada DPMPTSP', '2021-10-13 21:52:49', '2021-10-13 21:52:49', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (47, 9, 'Kelas 9 l', 2312000, 2021, 'Jabatan Fungsional Ahli Muda pada perangkat daerah\r\nlainnya', '2021-10-13 21:53:48', '2021-10-13 21:53:48', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (48, 8, 'Kelas 8 a', 2568000, 2021, 'Jabatan Pengawas pada Bagian Pengadaan Barang\r\ndan Jasa Setda', '2021-10-13 21:54:24', '2021-10-13 21:54:24', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (49, 8, 'Kelas 8 b', 2513000, 2021, 'Jabatan Pengawas pada Setda selain pada Bagian\r\nPengadaan Barang dan Jasa Setda', '2021-10-13 21:54:51', '2021-10-13 21:54:51', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (50, 8, 'Kelas 8 c', 2459000, 2021, 'Jabatan Pengawas pada Inspektorat', '2021-10-13 21:55:21', '2021-10-13 21:55:21', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (51, 8, 'Kelas 8 d', 2404000, 2021, 'Jabatan Pengawas pada Dinkes, BPBD, Bappeda\r\nLitbangda, BPPKAD, BKPPD, Satpol PP PK,\r\nDisdukcapil, dan Kepala Seksi Layanan Persandian\r\ndan Telekomunikasi pada Diskominfo', '2021-10-13 21:55:48', '2021-10-13 21:55:48', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (52, 8, 'Kelas 8 e', 2295000, 2021, 'Jabatan Pengawas pada DPMPTSP', '2021-10-13 21:56:16', '2021-10-13 21:56:16', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (53, 8, 'Kelas 8 f', 2186000, 2021, 'Jabatan Pengawas pada Perangkat Daerah lainnya', '2021-10-13 21:56:55', '2021-10-13 21:56:55', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (54, 8, 'Kelas 8 g', 2240000, 2021, 'Jabatan Fungsional Pengelola Pengadaan Barang dan\r\nJasa Ahli Pertama/Penyelia', '2021-10-13 21:57:20', '2021-10-13 21:57:20', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (55, 8, 'Kelas 8 h', 2186000, 2021, 'Jabatan Fungsional Ahli Pertama/Penyelia pada Setda\r\nselain Jabatan Fungsional Pengelola Pengadaan\r\nBarang dan Jasa', '2021-10-13 21:58:35', '2021-10-13 21:58:35', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (56, 8, 'Kelas 8 i', 2131000, 2021, 'Jabatan Fungsional Ahli Pertama/Penyelia pada\r\nInspektorat', '2021-10-13 21:58:59', '2021-10-13 21:58:59', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (57, 8, 'Kelas 8 j', 2076000, 2021, 'Jabatan Fungsional Ahli Pertama/Penyelia pada\r\nDinkes, BPBD, Bappeda Litbangda, BPPKAD, BKPPD,\r\nSatpol PP PK, Disdukcapil, dan Jabatan Fungsional\r\nOperator Transmisi Sandi\r\n', '2021-10-13 21:59:37', '2021-10-13 21:59:37', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (58, 8, 'Kelas 8 k', 1967000, 2021, 'Jabatan Fungsional Ahli Pertama/Penyelia pada\r\nDPMPTSP', '2021-10-13 22:00:09', '2021-10-13 22:00:09', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (59, 8, 'Kelas 8 l', 1858000, 2021, 'Jabatan Fungsional Pertama/Penyelia pada perangkat\r\ndaerah lainnya', '2021-10-13 22:00:33', '2021-10-13 22:00:33', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (60, 7, 'Kelas 7 a', 2037000, 2021, 'Jabatan Pelaksana pada Setda', '2021-10-13 22:01:00', '2021-10-13 22:01:00', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (61, 7, 'Kelas 7 b', 1993000, 2021, 'Jabatan Pelaksana pada Inspektorat', '2021-10-13 22:01:31', '2021-10-13 22:01:31', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (62, 7, 'Kelas 7 c', 1949000, 2021, 'Jabatan Pelaksana pada Dinkes, BPBD, Bappeda\r\nLitbangda, BPPKAD, BKPPD, Satpol PP PK, dan\r\nDisdukcapil', '2021-10-13 22:02:02', '2021-10-13 22:02:02', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (63, 7, 'Kelas 7 d', 1860000, 2021, 'Jabatan Pelaksana pada DPMPTSP', '2021-10-13 22:02:28', '2021-10-13 22:02:28', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (64, 7, 'Kelas 7 e', 1772000, 2021, 'Jabatan Pelaksana pada perangkat daerah lainnya', '2021-10-13 22:03:25', '2021-10-13 22:03:25', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (65, 7, 'Kelas 7 f', 1772000, 2021, 'Jabatan Fungsional Pelaksana Lanjutan/Mahir pada\r\nSetda', '2021-10-13 22:03:50', '2021-10-13 22:03:50', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (66, 7, 'Kelas 7 g', 1727000, 2021, 'Jabatan Fungsional Pelaksana Lanjutan/Mahir pada\r\nInspektorat', '2021-10-13 22:04:11', '2021-10-13 22:04:11', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (67, 7, 'Kelas 7 h', 1683000, 2021, 'Jabatan Fungsional Pelaksana Lanjutan/Mahir pada\r\nDinkes, BPBD, Bappeda Litbangda, BPPKAD, BKPPD,\r\nSatpol PP PK, Disdukcapil, dan Jabatan Fungsional\r\nOperator Transmisi Sandi', '2021-10-13 22:04:44', '2021-10-13 22:04:44', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (68, 7, 'Kelas 7 i', 1594000, 2021, 'Jabatan Fungsional Pelaksana Lanjutan/Mahir pada\r\nDPMPTSP', '2021-10-13 22:05:08', '2021-10-13 22:05:08', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (69, 7, 'Kelas 7 j', 1506000, 2021, 'Jabatan Fungsional Mahir/Pelaksana Lanjutan pada\r\nperangkat daerah lainnya ', '2021-10-13 22:05:33', '2021-10-13 22:05:33', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (70, 6, 'Kelas 6 a', 2212000, 2021, 'Jabatan Pelaksana Sekretaris (Bupati)', '2021-10-14 08:14:49', '2021-10-14 08:14:49', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (71, 6, 'Kelas 6 b', 1843000, 2021, 'Jabatan Pelaksana Sekretaris (Wakil Bupati)', '2021-10-14 08:15:12', '2021-10-14 08:15:12', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (72, 6, 'Kelas 6 c', 1696000, 2021, 'Jabatan Pelaksana pada Setda selain jabatan\r\nSekretaris (Bupati dan Wakil Bupati)', '2021-10-14 08:15:35', '2021-10-14 08:15:35', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (73, 5, 'Kelas 6 d', 1659000, 2021, 'Jabatan Pelaksana pada Inspektorat', '2021-10-14 08:16:03', '2021-10-14 08:16:03', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (74, 6, 'Kelas 6 e', 1622000, 2021, 'Jabatan Pelaksana pada Dinkes, BPBD, Bappeda\r\nLitbangda, BPPKAD, BKPPD, Satpol PP PK, dan\r\nDisdukcapil', '2021-10-14 08:16:32', '2021-10-14 08:16:32', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (75, 6, 'Kelas 6 f', 1548000, 2021, 'Jabatan Pelaksana pada DPMPTSP', '2021-10-14 08:16:54', '2021-10-14 08:16:54', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (76, 6, 'Kelas 6 g', 1475000, 2021, 'Jabatan Pelaksana pada Perangkat Daerah lainnya', '2021-10-14 08:17:24', '2021-10-14 08:17:24', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (77, 6, 'Kelas 6 h', 1475000, 2021, 'Jabatan Fungsional Terampil/Pelaksana pada Setda', '2021-10-14 08:17:52', '2021-10-14 08:17:52', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (78, 6, 'Kelas 6 i', 1438000, 2021, 'Jabatan Fungsional Terampil/Pelaksana pada\r\nInspektorat', '2021-10-14 08:18:26', '2021-10-14 08:18:26', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (79, 6, 'Kelas 6 j', 1401000, 2021, 'Jabatan Fungsional Terampil/Pelaksana pada Dinkes,\r\nBPBD, Bappeda Litbangda, BPPKAD, BKPPD, Satpol\r\nPP PK, Disdukcapil, dan Jabatan Fungsional Operator\r\nTransmisi Sandi\r\n', '2021-10-14 08:18:55', '2021-10-14 08:18:55', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (80, 6, 'Kelas 6 k', 1327000, 2021, 'Jabatan Fungsional Terampil/Pelaksana pada\r\nDPMPTSP', '2021-10-14 08:19:18', '2021-10-14 08:19:18', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (81, 6, 'Kelas 6 l', 1253000, 2021, 'Jabatan Fungsional Terampil/Pelaksana pada\r\nperangkat daerah lainnya', '2021-10-14 08:19:56', '2021-10-14 08:19:56', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (82, 5, 'Kelas 5 a', 3690000, 2021, 'Jabatan Ajudan Bupati', '2021-10-14 08:20:26', '2021-10-14 08:20:26', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (83, 5, 'Kelas 5 b', 3075000, 2021, 'Jabatan Ajudan Wakil Bupati', '2021-10-14 08:21:02', '2021-10-14 08:21:02', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (84, 5, 'Kelas 5 c', 1845000, 2021, 'Jabatan Pengemudi VIP (Bupati)', '2021-10-14 08:21:24', '2021-10-14 08:21:24', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (85, 5, 'Kelas 5 d', 1537000, 2021, 'Jabatan Pengemudi VIP (Wakil Bupati)', '2021-10-14 08:21:56', '2021-10-14 08:21:56', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (86, 5, 'Kelas 5 e', 1414000, 2021, 'Jabatan Pelaksana pada Setda selain jabatan Ajudan\r\n(Bupati dan Wakil Bupati) dan jabatan Pengemudi VIP\r\n(Bupati dan Wakil Bupati)', '2021-10-14 08:22:25', '2021-10-14 08:22:25', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (87, 5, 'Kelas 5 f', 1383000, 2021, 'Jabatan Pelaksana pada Inspektorat', '2021-10-14 08:23:04', '2021-10-14 08:23:04', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (88, 5, 'Kelas 5 g', 1353000, 2021, 'Jabatan Pelaksana pada Dinkes, BPBD, Bappeda\r\nLitbangda, BPPKAD, BKPPD, Satpol PP PK, dan\r\nDisdukcapil', '2021-10-14 08:23:28', '2021-10-14 08:23:28', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (89, 5, 'Kelas 5 h', 1291000, 2021, 'Jabatan Pelaksana pada DPMPTSP', '2021-10-14 08:23:54', '2021-10-14 08:23:54', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (90, 5, 'Kelas 5 i', 1230000, 2021, 'Jabatan Pelaksana pada Perangkat Daerah lainnya', '2021-10-14 08:24:50', '2021-10-14 08:24:50', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (91, 5, 'Kelas 5 j', 1230000, 2021, 'Jabatan Fungsional Pemula pada Setda', '2021-10-14 08:25:34', '2021-10-14 08:25:34', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (92, 5, 'Kelas 5 k', 1199000, 2021, 'Jabatan Fungsional Pemula pada Inspektorat', '2021-10-14 08:26:37', '2021-10-14 08:26:37', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (93, 5, 'Kelas 5 l', 1168000, 2021, 'Jabatan Fungsional Pemula pada Dinkes, BPBD,\r\nBappeda Litbangda, BPPKAD, BKPPD, Satpol PP PK,\r\nDisdukcapil, dan Jabatan Fungsional Operator\r\nTransmisi Sandi\r\n', '2021-10-14 08:27:03', '2021-10-14 08:27:03', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (94, 5, 'Kelas 5 m', 1107000, 2021, 'Jabatan Fungsional Pemula pada DPMPTSP', '2021-10-14 08:27:23', '2021-10-14 08:27:23', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (95, 5, 'Kelas 5 n', 1045000, 2021, 'Jabatan Fungsional Pemula pada perangkat daerah\r\nlainnya', '2021-10-14 08:27:43', '2021-10-14 08:27:43', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (96, 4, 'Kelas 4', 1026000, 2021, '', '2021-10-14 08:28:15', '2021-10-14 08:28:15', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (97, 3, 'Kelas 3 a', 1069000, 2021, 'Jabatan Pelaksana pada Setda', '2021-10-14 08:28:42', '2021-10-14 08:28:42', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (98, 3, 'Kelas 3 b', 1046000, 2021, 'Jabatan Pelaksana pada Inspektorat', '2021-10-14 08:29:01', '2021-10-14 08:29:01', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (99, 3, 'Kelas 3 c', 1023000, 2021, 'Jabatan Pelaksana pada Dinkes, BPBD, Bappeda\r\nLitbangda, BPPKAD, BKPPD, Satpol PP PK, dan\r\nDisdukcapil', '2021-10-14 08:29:21', '2021-10-14 08:29:21', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (100, 3, 'Kelas 3 d', 976000, 2021, 'Jabatan Pelaksana pada DPMPTSP', '2021-10-14 08:29:40', '2021-10-14 08:29:40', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (101, 3, 'Kelas 3 e', 930000, 2021, 'Jabatan Pelaksana pada Perangkat Daerah lainnya', '2021-10-14 08:29:59', '2021-10-14 08:29:59', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (102, 2, 'Kelas 2', 836000, 2021, '', '2021-10-14 08:30:31', '2021-10-14 08:30:31', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (103, 1, 'Kelas 1 a', 831000, 2021, 'Jabatan Pelaksana pada Setda', '2021-10-14 08:31:03', '2021-10-14 08:31:03', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (104, 1, 'Kelas 1 b', 813000, 2021, 'Jabatan Pelaksana pada Inspektorat', '2021-10-14 08:31:26', '2021-10-14 08:31:26', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (105, 1, 'Kelas 1 c', 795000, 2021, 'Jabatan Pelaksana pada Dinkes, BPBD, Bappeda Litbangda, BPPKAD, BKPPD, Satpol PP PK, dan Disdukcapil', '2021-10-14 08:33:31', '2021-10-14 08:33:31', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (106, 1, 'Kelas 1 d', 759000, 2021, 'Jabatan Pelaksana pada DPMPTSP', '2021-10-14 08:34:10', '2021-10-14 08:34:10', NULL);
+INSERT INTO `nominal_kelas_jabatan` VALUES (107, 1, 'Kelas 1 e', 723000, 2021, 'Jabatan Pelaksana pada Perangkat Daerah lainnya', '2021-10-14 08:34:52', '2021-10-14 08:34:52', NULL);
 
 -- ----------------------------
 -- Table structure for pengajuan_gaji
 -- ----------------------------
 DROP TABLE IF EXISTS `pengajuan_gaji`;
 CREATE TABLE `pengajuan_gaji`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(0) NOT NULL AUTO_INCREMENT,
   `periode` date NULL DEFAULT NULL,
   `nip` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `skpd` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -445,13 +546,5 @@ CREATE TABLE `pengajuan_gaji`  (
   `deleted_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of pengajuan_gaji
--- ----------------------------
-INSERT INTO `pengajuan_gaji` VALUES (3, '2021-10-01', '199606102018082001', '005', '1', '2021-10-11 10:20:22', '2021-10-11 10:20:22', NULL);
-INSERT INTO `pengajuan_gaji` VALUES (4, '2021-10-01', '199708232019082001', '005', '1', '2021-10-11 10:56:32', '2021-10-11 10:56:32', NULL);
-INSERT INTO `pengajuan_gaji` VALUES (5, '2021-10-01', '196504231992031006', '005', '1', '2021-10-11 10:56:34', '2021-10-11 10:56:34', NULL);
-INSERT INTO `pengajuan_gaji` VALUES (6, '2021-10-01', '196411231992031007', '005', '1', '2021-10-11 10:56:35', '2021-10-11 10:56:35', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
