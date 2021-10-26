@@ -31,6 +31,7 @@ class NominalKelasJabatanModel extends Model
 
     public function get($id=false)
     {
+        $this->orderBy('nominal','DESC');
         if($id === false)
         {
             return $this->findAll();

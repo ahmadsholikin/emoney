@@ -33,7 +33,7 @@
             <div class="form-row">
                 <div class="col form-group">
                     <label for="tahunBerlaku">Tahun Berlaku</label>
-                    <input type="text" required  class="form-control form-control-sm tahun" name="tahunBerlaku" id="tahunBerlaku">
+                    <input type="text" required  class="form-control form-control-sm tahun" name="tahunBerlaku" id="tahunBerlaku" value="2021">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>

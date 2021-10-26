@@ -26,8 +26,10 @@
                         <td class="text-right">Rp. <?=rp($row["nominal"]);?>,-</td>
                         <td><?=$row["tahun_berlaku"];?></td>
                         <td>
-                            <?=btn_edit("./nominal-kelas-jabatan/edit?id=".$row["id"]);?>
-                            <a data-toggle="tooltip" onclick="return konfirmasi('./nominal-kelas-jabatan/delete?id='.$row['id'])" title="" class="btn btn-outline-danger btn-sm btn-icon ml-2" href="./nominal-kelas-jabatan/delete?id=1" data-original-title="klik untuk menghapus"><i class="fas fa-trash"></i> Hapus</a>
+                            <div class="btn-group">
+                                <?=btn_edit("./nominal-kelas-jabatan/edit?id=".$row["id"]);?>
+                                <?=btn_delete("./nominal-kelas-jabatan/delete?id=".$row["id"]);?>
+                            </div>
                         </td>
                     </tr>
                     <?php endforeach;?>
