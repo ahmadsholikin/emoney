@@ -183,6 +183,7 @@ $routes->group('backend', function ($routes) {
         $routes->post('generate', $root_groups.'::generate', ['filter' => 'auth']);
     });
     
+    //sinkron
     $routes->group('kenaikan-gaji-berkala', function ($routes) {
         $root_groups = 'Backend\Sinkron\Kenaikangajiberkala';
         //pages
@@ -198,6 +199,30 @@ $routes->group('backend', function ($routes) {
         $routes->post('get-sinkron', $root_groups . '::getSinkron', ['filter' => 'auth']);
     });
 
+    $routes->group('kenaikan-pangkat', function ($routes) {
+        $root_groups = 'Backend\Sinkron\KenaikanPangkat';
+        //pages
+        $routes->add('/', $root_groups . '::index', ['filter' => 'auth']);
+        $routes->add('add', $root_groups . '::add', ['filter' => 'auth']);
+        $routes->get('edit', $root_groups . '::edit', ['filter' => 'auth']);
+        //process
+        $routes->post('insert', $root_groups . '::insert', ['filter' => 'auth']);
+        $routes->post('update', $root_groups . '::update', ['filter' => 'auth']);
+        $routes->get('delete', $root_groups . '::delete', ['filter' => 'auth']);
+    });
+
+    $routes->group('validasi-data-keluarga', function ($routes) {
+        $root_groups = 'Backend\Sinkron\ValidasiDataKeluarga';
+        //pages
+        $routes->add('/', $root_groups . '::index', ['filter' => 'auth']);
+        $routes->add('add', $root_groups . '::add', ['filter' => 'auth']);
+        $routes->get('edit', $root_groups . '::edit', ['filter' => 'auth']);
+        //process
+        $routes->post('insert', $root_groups . '::insert', ['filter' => 'auth']);
+        $routes->post('update', $root_groups . '::update', ['filter' => 'auth']);
+        $routes->get('delete', $root_groups . '::delete', ['filter' => 'auth']);
+    });
+    
     $routes->group('unit-kerja', function ($routes) {
         $root_groups = 'Backend\Sinkron\UnitKerja';
         //pages
@@ -211,7 +236,6 @@ $routes->group('backend', function ($routes) {
     });
 
     //nominatif
-    //penggajian
     $routes->group('penggajian', function ($routes) {
         $root_groups = 'Backend\Nominatif\Penggajian';
         //pages
@@ -226,9 +250,95 @@ $routes->group('backend', function ($routes) {
         $routes->post('set-check-list', $root_groups . '::setCheckList', ['filter' => 'auth']);
     });
 
+    $routes->group('import-data-penerima', function ($routes) {
+        $root_groups = 'Backend\Nominatif\ImportDataPenerima';
+        //pages
+        $routes->add('/', $root_groups . '::index', ['filter' => 'auth']);
+        $routes->add('add', $root_groups . '::add', ['filter' => 'auth']);
+        $routes->get('edit', $root_groups . '::edit', ['filter' => 'auth']);
+        //process
+        $routes->post('get-list', $root_groups . '::getList', ['filter' => 'auth']);
+        $routes->post('update', $root_groups . '::update', ['filter' => 'auth']);
+        $routes->get('delete', $root_groups . '::delete', ['filter' => 'auth']);
+    });
+
     //data TPP
     $routes->group('nominal-kelas-jabatan', function ($routes) {
         $root_groups = 'Backend\DataTPP\NominalKelasJabatan';
+        //pages
+        $routes->add('/', $root_groups . '::index', ['filter' => 'auth']);
+        $routes->add('add', $root_groups . '::add', ['filter' => 'auth']);
+        $routes->get('edit', $root_groups . '::edit', ['filter' => 'auth']);
+        //process
+        $routes->post('insert', $root_groups . '::insert', ['filter' => 'auth']);
+        $routes->post('update', $root_groups . '::update', ['filter' => 'auth']);
+        $routes->get('delete', $root_groups . '::delete', ['filter' => 'auth']);
+    });
+
+    $routes->group('nominatif-penerima', function ($routes) {
+        $root_groups = 'Backend\DataTPP\NominatifPenerima';
+        //pages
+        $routes->add('/', $root_groups . '::index', ['filter' => 'auth']);
+        $routes->add('add', $root_groups . '::add', ['filter' => 'auth']);
+        $routes->get('edit', $root_groups . '::edit', ['filter' => 'auth']);
+        //process
+        $routes->post('insert', $root_groups . '::insert', ['filter' => 'auth']);
+        $routes->post('update', $root_groups . '::update', ['filter' => 'auth']);
+        $routes->get('delete', $root_groups . '::delete', ['filter' => 'auth']);
+        $routes->post('get-list', $root_groups . '::getList', ['filter' => 'auth']);
+    });
+
+    $routes->group('proses-pengajuan-tpp', function ($routes) {
+        $root_groups = 'Backend\DataTPP\ProsesPengajuanTPP';
+        //pages
+        $routes->add('/', $root_groups . '::index', ['filter' => 'auth']);
+        $routes->add('add', $root_groups . '::add', ['filter' => 'auth']);
+        $routes->get('edit', $root_groups . '::edit', ['filter' => 'auth']);
+        //process
+        $routes->post('insert', $root_groups . '::insert', ['filter' => 'auth']);
+        $routes->post('update', $root_groups . '::update', ['filter' => 'auth']);
+        $routes->get('delete', $root_groups . '::delete', ['filter' => 'auth']);
+    });
+
+    //laporan
+    $routes->group('laporan-belanja-pegawai', function ($routes) {
+        $root_groups = 'Backend\Laporan\LaporanBelanjaPegawai';
+        //pages
+        $routes->add('/', $root_groups . '::index', ['filter' => 'auth']);
+        $routes->add('add', $root_groups . '::add', ['filter' => 'auth']);
+        $routes->get('edit', $root_groups . '::edit', ['filter' => 'auth']);
+        //process
+        $routes->post('insert', $root_groups . '::insert', ['filter' => 'auth']);
+        $routes->post('update', $root_groups . '::update', ['filter' => 'auth']);
+        $routes->get('delete', $root_groups . '::delete', ['filter' => 'auth']);
+    });
+
+    $routes->group('laporan-penerimaan-tpp', function ($routes) {
+        $root_groups = 'Backend\Laporan\LaporanPenerimaanTPP';
+        //pages
+        $routes->add('/', $root_groups . '::index', ['filter' => 'auth']);
+        $routes->add('add', $root_groups . '::add', ['filter' => 'auth']);
+        $routes->get('edit', $root_groups . '::edit', ['filter' => 'auth']);
+        //process
+        $routes->post('insert', $root_groups . '::insert', ['filter' => 'auth']);
+        $routes->post('update', $root_groups . '::update', ['filter' => 'auth']);
+        $routes->get('delete', $root_groups . '::delete', ['filter' => 'auth']);
+    });
+
+    $routes->group('laporan-bpjs', function ($routes) {
+        $root_groups = 'Backend\Laporan\LaporanBPJS';
+        //pages
+        $routes->add('/', $root_groups . '::index', ['filter' => 'auth']);
+        $routes->add('add', $root_groups . '::add', ['filter' => 'auth']);
+        $routes->get('edit', $root_groups . '::edit', ['filter' => 'auth']);
+        //process
+        $routes->post('insert', $root_groups . '::insert', ['filter' => 'auth']);
+        $routes->post('update', $root_groups . '::update', ['filter' => 'auth']);
+        $routes->get('delete', $root_groups . '::delete', ['filter' => 'auth']);
+    });
+
+    $routes->group('take-home-pay', function ($routes) {
+        $root_groups = 'Backend\Laporan\TakeHomePay';
         //pages
         $routes->add('/', $root_groups . '::index', ['filter' => 'auth']);
         $routes->add('add', $root_groups . '::add', ['filter' => 'auth']);

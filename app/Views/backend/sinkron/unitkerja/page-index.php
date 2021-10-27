@@ -1,6 +1,6 @@
 <div class='card'>
     <div class='card-header bg-transparent'>
-        <a href="">Sinkron Data Unit Kerja</a>
+        <a class="" href="<?=backend_url();?>/unit-kerja/add" role="button" data-toggle="tooltip" title="klik untuk menambah data baru" ><i class="mdi mdi-plus-circle"></i> Data Baru</a>
     </div>
     <div class='card-body'>
         <div class="table-responsive">
@@ -8,7 +8,6 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>ID</th>
                         <th>Kode Simpeg</th>
                         <th>Nama</th>
                         <th>Aksi</th>
@@ -18,13 +17,12 @@
                     <?php $no=1; foreach($data as $row):?>
                     <tr>
                         <td><?=$no++;?></td>
-                        <td><?=$row["id"];?></td>
                         <td><?=$row["kode_simpeg"];?></td>
                         <td><?=$row["nama"];?></td>
                         <td>
                             <div class="btn-group" role="group">
-                                <?=btn_edit("./edit?id=".$row["id"]);?>
-                                <?=btn_delete("./delete?id=".$row["id"]);?>
+                                <?=btn_edit("unit-kerja/edit?id=".$row["id"]);?>
+                                <?=btn_delete("unit-kerja/delete?id=".$row["id"]);?>
                             </div>
                         </td>
                     </tr>

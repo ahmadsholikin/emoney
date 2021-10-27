@@ -1,9 +1,9 @@
 <?php namespace App\Models\DataTpp;
 use CodeIgniter\Model;
 
-class NominalKelasJabatanModel extends Model
+class NominatifPenerimaModel extends Model
 {
-    protected $table              = 'nominal_kelas_jabatan';
+    protected $table              = 'tpp_nominatif_penerima';
     protected $primaryKey         = 'id';
     protected $useSoftDeletes     = false;
     protected $returnType         = 'array';
@@ -16,14 +16,14 @@ class NominalKelasJabatanModel extends Model
     protected $validationMessages = [];
     protected $skipValidation     = true;
 
-    //SHOW COLUMNS FROM nominal_kelas_jabatan;
+    //SHOW COLUMNS FROM tpp_nominatif_penerima;
     protected $allowedFields      = [
-        'id',
-        'induk_kelas',
+        'nip',
         'kelas',
         'nominal',
-        'tahun_berlaku',
-        'keterangan',
+        'prosentase',
+        'penerimaan',
+        'jenis',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -31,8 +31,6 @@ class NominalKelasJabatanModel extends Model
 
     public function get($id=false)
     {
-        $this->orderBy('induk_kelas','DESC');
-        $this->orderBy('kelas','ASC');
         if($id === false)
         {
             return $this->findAll();

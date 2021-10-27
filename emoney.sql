@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : PDM
+ Source Server         : LOCAL
  Source Server Type    : MySQL
- Source Server Version : 80026
- Source Host           : 103.115.104.120:3306
+ Source Server Version : 100414
+ Source Host           : localhost:3306
  Source Schema         : emoney
 
  Target Server Type    : MySQL
- Target Server Version : 80026
+ Target Server Version : 100414
  File Encoding         : 65001
 
- Date: 26/10/2021 06:29:32
+ Date: 28/10/2021 06:41:39
 */
 
 SET NAMES utf8mb4;
@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `app_group`;
 CREATE TABLE `app_group`  (
-  `group_id` int(0) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL AUTO_INCREMENT,
   `group_nama` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `deskripsi` varchar(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `created_at` datetime(0) NULL DEFAULT NULL,
@@ -71,17 +71,17 @@ INSERT INTO `app_info` VALUES ('1', 'E Billing Dashboard Layanan Sistem', 'helpd
 -- ----------------------------
 DROP TABLE IF EXISTS `app_menu`;
 CREATE TABLE `app_menu`  (
-  `menu_id` int(0) NOT NULL AUTO_INCREMENT,
+  `menu_id` int(11) NOT NULL AUTO_INCREMENT,
   `menu_nama` varchar(40) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `deskripsi` varchar(150) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `link` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '#',
   `prefik` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `ikon` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT 'mdi mdi-home',
-  `induk_id` tinyint(0) NULL DEFAULT NULL,
+  `induk_id` tinyint(4) NULL DEFAULT NULL,
   `root_nama` varchar(40) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `hirarki` tinyint(0) NULL DEFAULT NULL,
+  `hirarki` tinyint(4) NULL DEFAULT NULL,
   `sub` enum('1','0') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '0',
-  `urutan` tinyint(0) NULL DEFAULT 1,
+  `urutan` tinyint(4) NULL DEFAULT 1,
   `aktif` enum('1','0') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '1',
   `nama_tabel` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `primary_key` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
@@ -130,9 +130,9 @@ INSERT INTO `app_menu` VALUES (76, 'Take Home Pay', 'Informasi Take Home Pay Peg
 -- ----------------------------
 DROP TABLE IF EXISTS `app_role`;
 CREATE TABLE `app_role`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
-  `group_id` int(0) NULL DEFAULT NULL,
-  `menu_id` int(0) NULL DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NULL DEFAULT NULL,
+  `menu_id` int(11) NULL DEFAULT NULL,
   `akses_lihat` enum('1','0') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0',
   `akses_tambah` enum('1','0') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0',
   `akses_ubah` enum('1','0') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0',
@@ -164,9 +164,9 @@ INSERT INTO `app_role` VALUES (99, 1, 60, '1', '0', '0', '0', NULL, NULL, NULL);
 INSERT INTO `app_role` VALUES (100, 1, 61, '1', '1', '1', '1', NULL, NULL, NULL);
 INSERT INTO `app_role` VALUES (101, 1, 62, '1', '1', '1', '1', NULL, NULL, NULL);
 INSERT INTO `app_role` VALUES (102, 1, 63, '1', '1', '1', '1', NULL, NULL, NULL);
-INSERT INTO `app_role` VALUES (103, 1, 64, '1', '1', '1', '0', NULL, NULL, NULL);
-INSERT INTO `app_role` VALUES (104, 1, 65, '1', '1', '1', '0', NULL, NULL, NULL);
-INSERT INTO `app_role` VALUES (105, 1, 66, '1', '1', '1', '0', NULL, NULL, NULL);
+INSERT INTO `app_role` VALUES (103, 1, 64, '1', '1', '1', '1', NULL, NULL, NULL);
+INSERT INTO `app_role` VALUES (104, 1, 65, '1', '1', '1', '1', NULL, NULL, NULL);
+INSERT INTO `app_role` VALUES (105, 1, 66, '1', '1', '1', '1', NULL, NULL, NULL);
 INSERT INTO `app_role` VALUES (106, 1, 67, '1', '1', '1', '1', NULL, NULL, NULL);
 INSERT INTO `app_role` VALUES (107, 1, 71, '1', '1', '1', '1', NULL, NULL, NULL);
 INSERT INTO `app_role` VALUES (108, 1, 70, '1', '1', '1', '1', NULL, NULL, NULL);
@@ -188,7 +188,7 @@ CREATE TABLE `app_users`  (
   `username` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `kontak` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `group_id` int(0) NOT NULL,
+  `group_id` int(11) NOT NULL,
   `foto` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `is_active` enum('1','0') CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1',
   `created_at` datetime(0) NULL DEFAULT NULL,
@@ -209,7 +209,7 @@ INSERT INTO `app_users` VALUES ('nci.ahmad@gmail.com', '@hmad', 'Ahmad Sholikin'
 -- ----------------------------
 DROP TABLE IF EXISTS `hist_kgb`;
 CREATE TABLE `hist_kgb`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `periode` date NULL DEFAULT NULL,
   `nip` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -217,7 +217,7 @@ CREATE TABLE `hist_kgb`  (
   `pangkat` char(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `unit_kerja` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `gaji` double UNSIGNED NULL DEFAULT NULL,
-  `masker` tinyint(0) NULL DEFAULT NULL,
+  `masker` tinyint(4) NULL DEFAULT NULL,
   `tmt` date NULL DEFAULT NULL,
   `pejabat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `no_sk` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -410,8 +410,8 @@ INSERT INTO `hist_kgb` VALUES (177, '2021-11-01', '199003052017062001', 'EMA SEK
 -- ----------------------------
 DROP TABLE IF EXISTS `nominal_kelas_jabatan`;
 CREATE TABLE `nominal_kelas_jabatan`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
-  `induk_kelas` tinyint(0) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `induk_kelas` tinyint(4) NOT NULL,
   `kelas` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nominal` double NOT NULL,
   `tahun_berlaku` year NOT NULL,
@@ -536,7 +536,7 @@ INSERT INTO `nominal_kelas_jabatan` VALUES (107, 1, 'Kelas 1 e', 723000, 2021, '
 -- ----------------------------
 DROP TABLE IF EXISTS `pengajuan_gaji`;
 CREATE TABLE `pengajuan_gaji`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `periode` date NULL DEFAULT NULL,
   `nip` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `skpd` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -546,5 +546,48 @@ CREATE TABLE `pengajuan_gaji`  (
   `deleted_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for tpp_nominatif_penerima
+-- ----------------------------
+DROP TABLE IF EXISTS `tpp_nominatif_penerima`;
+CREATE TABLE `tpp_nominatif_penerima`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nip` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `kelas` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nominal` double NOT NULL,
+  `prosentase` double NOT NULL,
+  `penerimaan` double NOT NULL,
+  `jenis` enum('primer','sekunder') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `created_at` datetime(0) NULL DEFAULT NULL,
+  `updated_at` datetime(0) NULL DEFAULT NULL,
+  `deleted_at` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tpp_nominatif_penerima
+-- ----------------------------
+INSERT INTO `tpp_nominatif_penerima` VALUES (4, '196504231992031006', 'Kelas 14 a', 8523000, 100, 8523000, 'primer', '2021-10-27 18:31:59', '2021-10-27 18:31:59', NULL);
+INSERT INTO `tpp_nominatif_penerima` VALUES (5, '196504231992031006', 'Kelas 13 a', 6687000, 50, 3343500, 'sekunder', '2021-10-27 18:32:47', '2021-10-27 18:32:47', NULL);
+
+-- ----------------------------
+-- Table structure for unit_kerja
+-- ----------------------------
+DROP TABLE IF EXISTS `unit_kerja`;
+CREATE TABLE `unit_kerja`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode_simpeg` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` datetime(0) NULL DEFAULT NULL,
+  `updated_at` datetime(0) NULL DEFAULT NULL,
+  `deleted_at` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of unit_kerja
+-- ----------------------------
+INSERT INTO `unit_kerja` VALUES (1, 'K001', 'Kode Satu', '2021-10-26 08:40:50', '2021-10-26 08:47:26', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
