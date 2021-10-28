@@ -35,14 +35,17 @@ class NominatifPenerima extends BackendController
                                                 aa.pns_nip_18 AS NIP,
                                                 aa.pns_nm AS NAMA,
                                                 IF(gg.skpd_jbt_fk='-',bb.skpd_jbt_st,gg.skpd_jbt_fk) as JABATAN,
-                                                bb.skpd_jbt_esl_kd as ESELON_KODE
-                                            FROM db1_pns aa
-                                                INNER JOIN ts4a_skpd_jbt_st_kd bb ON aa.skpd_jbt_st_kd = bb.skpd_jbt_st_kd
-                                                INNER JOIN ts1_skpd_kd cc ON bb.skpd_kd = cc.skpd_kd
-                                                INNER JOIN ts2_skpd_b_b_kd dd ON bb.skpd_b_b_kd = dd.skpd_b_b_kd
-                                                INNER JOIN ts3_skpd_s_skl_kd ee ON bb.skpd_s_skl_kd = ee.skpd_s_skl_kd
-                                                INNER JOIN db21_fms09_jbt_skpd ff ON ff.fms_skpd_kd = bb.fms_skpd_kd
-                                                INNER JOIN t1_skpd_jbt_fk_kd1 gg ON gg.skpd_jbt_fk_kd1 = aa.skpd_jbt_fk_kd1
+                                                bb.skpd_jbt_esl_kd as ESELON_KODE,
+                                                COALESCE(jc.kelas,'') as KELAS,
+                                                COALESCE(jc.penerimaan,'') as PENERIMAAN
+                                            FROM simpeg.db1_pns aa
+                                                INNER JOIN simpeg.ts4a_skpd_jbt_st_kd bb ON aa.skpd_jbt_st_kd = bb.skpd_jbt_st_kd
+                                                INNER JOIN simpeg.ts1_skpd_kd cc ON bb.skpd_kd = cc.skpd_kd
+                                                INNER JOIN simpeg.ts2_skpd_b_b_kd dd ON bb.skpd_b_b_kd = dd.skpd_b_b_kd
+                                                INNER JOIN simpeg.ts3_skpd_s_skl_kd ee ON bb.skpd_s_skl_kd = ee.skpd_s_skl_kd
+                                                INNER JOIN simpeg.db21_fms09_jbt_skpd ff ON ff.fms_skpd_kd = bb.fms_skpd_kd
+                                                INNER JOIN simpeg.t1_skpd_jbt_fk_kd1 gg ON gg.skpd_jbt_fk_kd1 = aa.skpd_jbt_fk_kd1
+                                                LEFT JOIN  emoney.tpp_nominatif_penerima jc ON aa.pns_nip_18 = jc.nip AND aa.skpd_kd = jc.skpd_kd
                                             WHERE aa.skpd_kd=".$this->sipgan->escape($unit_kerja)." 
                                                 AND aa.sts_kpgw_kd IN ('1','2')
                                             ORDER BY CAST(bb.skpd_jbt_esl_kd AS INT) ASC");

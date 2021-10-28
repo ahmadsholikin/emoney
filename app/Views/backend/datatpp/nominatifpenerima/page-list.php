@@ -17,8 +17,8 @@
             <td class="tr_nip"><?=$row['NIP'];?></td>
             <td class="tr_nama"><?=$row['NAMA'];?></td>
             <td class="tr_jabatan"><?=$row['JABATAN'];?></td>
-            <td ><span id="tr_jc_<?=$no;?>"></span></td>
-            <td ><span id="tr_nominal_<?=$no;?>"></span></td>
+            <td ><span id="tr_jc_<?=$no;?>"><?=$row['KELAS'];?></span></td>
+            <td ><span id="tr_nominal_<?=$no;?>"><?=($row['PENERIMAAN']<>'')?'Rp. '.rp($row['PENERIMAAN']).',-':'';?></span></td>
             <td>
                 <button class="btn btn-outline-danger btn-sm btnSet" data-toggle="modal" data-target="#exampleModalCenter"><i class="mdi mdi-cogs"></i></button>
             </td>
